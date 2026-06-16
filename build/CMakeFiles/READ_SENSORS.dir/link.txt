@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/READ_SENSORS.dir/src/main.cpp.o CMakeFiles/READ_SENSORS.dir/src/serial/serial.cpp.o -o READ_SENSORS  -L/usr/lib/x86_64-linux-gnu -lserial 

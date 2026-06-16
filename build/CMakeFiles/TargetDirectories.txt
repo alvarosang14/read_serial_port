@@ -1,0 +1,3 @@
+/home/asantos/Documents/Master/TFM/code/read_sensors/build/CMakeFiles/READ_SENSORS.dir
+/home/asantos/Documents/Master/TFM/code/read_sensors/build/CMakeFiles/edit_cache.dir
+/home/asantos/Documents/Master/TFM/code/read_sensors/build/CMakeFiles/rebuild_cache.dir
