@@ -11,11 +11,11 @@
 # This option is supported only in the clang-format configuration (both within -style='{...}' and the .clang-format file).
 # Possible values:
 #   LLVM A style complying with the LLVM coding standards
-#   Google A style complying with Google’s C++ style guide
-#   Chromium A style complying with Chromium’s style guide
-#   Mozilla A style complying with Mozilla’s style guide
-#   WebKit A style complying with WebKit’s style guide
-#BasedOnStyle:
+#   Google A style complying with Google's C++ style guide
+#   Chromium A style complying with Chromium's style guide
+#   Mozilla A style complying with Mozilla's style guide
+#   WebKit A style complying with WebKit's style guide
+BasedOnStyle: Google
 
 # TabWidth (unsigned)
 # The number of columns used for tab stops.
@@ -53,7 +53,7 @@ Language: Cpp
 #   LS_Cpp03 (in configuration: Cpp03) Use C++03-compatible syntax.
 #   LS_Cpp11 (in configuration: Cpp11) Use features of C++11 (e.g. A<A<int>> instead of A<A<int> >).
 #   LS_Auto (in configuration: Auto) Automatic detection based on the input.
-Standard: Cpp11
+Standard: c++17
 
 # Pointer and reference alignment style. Possible values: Left, Right, Middle.
 PointerAlignment: Left
@@ -69,13 +69,13 @@ AccessModifierOffset: 0
 #   BAS_Align (in configuration: Align) Align parameters on the open bracket, e.g.:
 #   someLongFunction(argument1,
 #                    argument2);
-#   BAS_DontAlign (in configuration: DontAlign) Don’t align, instead use ContinuationIndentWidth, e.g.:
+#   BAS_DontAlign (in configuration: DontAlign) Don't align, instead use ContinuationIndentWidth, e.g.:
 #   someLongFunction(argument1,
 #   argument2);
-#   BAS_AlwaysBreak (in configuration: AlwaysBreak) Always break after an open bracket, if the parameters don’t fit on a single line, e.g.:
+#   BAS_AlwaysBreak (in configuration: AlwaysBreak) Always break after an open bracket, if the parameters don't fit on a single line, e.g.:
 #   someLongFunction(
 #       argument1, argument2);
-AlignAfterOpenBracket: false
+AlignAfterOpenBracket: DontAlign
 
 # AlignConsecutiveAssignments (bool)
 # If true, aligns consecutive assignments.
@@ -83,11 +83,11 @@ AlignAfterOpenBracket: false
 # int aaaa = 12;
 # int b    = 23;
 # int ccc  = 23;
-AlignConsecutiveAssignments: true
+AlignConsecutiveAssignments: false
 
 # AlignEscapedNewlinesLeft (bool)
 # If true, aligns escaped newlines as far left as possible. Otherwise puts them into the right-most column.
-AlignEscapedNewlinesLeft: true
+AlignEscapedNewlines: Left
 
 # AlignOperands (bool)
 # If true, horizontally align operands of binary and ternary expressions.
@@ -117,7 +117,7 @@ AllowShortCaseLabelsOnASingleLine: true
 # Possible values:
 #   SFS_None (in configuration: None) Never merge functions into a single line.
 #   SFS_Empty (in configuration: Empty) Only merge empty functions.
-#   SFS_Inline (in configuration: Inline) Only merge functions defined inside a class. Implies “empty”.
+#   SFS_Inline (in configuration: Inline) Only merge functions defined inside a class. Implies "empty".
 #   SFS_All (in configuration: All) Merge all functions fitting on a single line.
 AllowShortFunctionsOnASingleLine: false
 
@@ -139,11 +139,11 @@ AlwaysBreakBeforeMultilineStrings: false
 AlwaysBreakTemplateDeclarations: false
 
 # BinPackArguments (bool)
-# If false, a function call’s arguments will either be all on the same line or will have one line each.
+# If false, a function call's arguments will either be all on the same line or will have one line each.
 #BinPackArguments: false
 
 # BinPackParameters (bool)
-# If false, a function declaration’s or function definition’s parameters will either all be on the same line or will have one line each.
+# If false, a function declaration's or function definition's parameters will either all be on the same line or will have one line each.
 BinPackParameters: false
 
 # BraceWrapping (BraceWrappingFlags)
@@ -171,7 +171,7 @@ BinPackParameters: false
 # The way to wrap binary operators.
 # Possible values:
 #   BOS_None (in configuration: None) Break after operators.
-#   BOS_NonAssignment (in configuration: NonAssignment) Break before operators that aren’t assignments.
+#   BOS_NonAssignment (in configuration: NonAssignment) Break before operators that aren't assignments.
 #   BOS_All (in configuration: All) Break before operators.
 BreakBeforeBinaryOperators: false
 
@@ -202,15 +202,15 @@ BreakConstructorInitializersBeforeComma: false
 
 # ColumnLimit (unsigned)
 # The column limit.
-# A column limit of 0 means that there is no column limit. In this case, clang-format will respect the input’s line breaking decisions within statements unless they contradict other rules.
-ColumnLimit: 80
+# A column limit of 0 means that there is no column limit. In this case, clang-format will respect the input's line breaking decisions within statements unless they contradict other rules.
+ColumnLimit: 100
 
 # CommentPragmas (std::string)
 # A regular expression that describes comments with special meaning, which should not be split into lines or otherwise changed.
 CommentPragmas: ''
 
 # ConstructorInitializerAllOnOneLineOrOnePerLine (bool)
-# If the constructor initializers don’t fit on a line, put each initializer on its own line.
+# If the constructor initializers don't fit on a line, put each initializer on its own line.
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
 
 # ConstructorInitializerIndentWidth (unsigned)
@@ -219,17 +219,17 @@ ConstructorInitializerIndentWidth: 0
 
 # ContinuationIndentWidth (unsigned)
 # Indent width for line continuations.
-ContinuationIndentWidth: 0
+ContinuationIndentWidth: 4
 
 # Cpp11BracedListStyle (bool)
 # If true, format braced lists as best suited for C++11 braced lists.
 # Important differences: - No spaces inside the braced list. - No line break before the closing brace. - Indentation with the continuation indent, not with the block indent.
 # Fundamentally, C++11 braced lists are formatted exactly like function calls would be formatted in their place. If the braced list follows a name (e.g. a type or variable name), clang-format formats as if the {} were the parentheses of a function call with that name. If there is no name, a zero-length name is assumed.
-Cpp11BracedListStyle: false
+Cpp11BracedListStyle: true
 
 # DerivePointerAlignment (bool)
 # If true, analyze the formatted file for the most common alignment of & and \*. PointerAlignment is then used only as fallback.
-DerivePointerBinding: false
+DerivePointerAlignment: false
 
 # DisableFormat (bool)
 # Disables formatting completely.
@@ -253,7 +253,7 @@ DerivePointerBinding: false
 
 # IncludeCategories (std::vector<IncludeCategory>)
 # Regular expressions denoting the different #include categories used for ordering #includes.
-# These regular expressions are matched against the filename of an include (including the <> or “”) in order. The value belonging to the first matching regular expression is assigned and #includes are sorted first according to increasing category number and then alphabetically within each category.
+# These regular expressions are matched against the filename of an include (including the <> or "") in order. The value belonging to the first matching regular expression is assigned and #includes are sorted first according to increasing category number and then alphabetically within each category.
 # If none of the regular expressions match, INT_MAX is assigned as category. The main header for a source file automatically gets category 0. so that it is generally kept at the beginning of the #includes (http://llvm.org/docs/CodingStandards.html#include-style). However, you can also assign negative priorities if you have certain headers that always need to be first.
 # To configure this in the .clang-format file, use:
 # IncludeCategories:
@@ -272,7 +272,7 @@ IndentCaseLabels: false
 
 # IndentFunctionDeclarationAfterType (bool)
 # If true, indent when breaking function declarations which are not also definitions after the type.
-IndentFunctionDeclarationAfterType: false
+#IndentFunctionDeclarationAfterType: false
 
 # IndentWrappedFunctionNames (bool)
 # Indent if a function definition or declaration is wrapped after the type.
@@ -297,7 +297,7 @@ MaxEmptyLinesToKeep: 2
 # NamespaceIndentation (NamespaceIndentationKind)
 # The indentation used for namespaces.
 # Possible values:
-#   NI_None (in configuration: None) Don’t indent in namespaces.
+#   NI_None (in configuration: None) Don't indent in namespaces.
 #   NI_Inner (in configuration: Inner) Indent only in inner namespaces (nested in other namespaces).
 #   NI_All (in configuration: All) Indent in all namespaces.
 NamespaceIndentation: None
@@ -348,11 +348,11 @@ PenaltyReturnTypeOnItsOwnLine: 20
 
 # ReflowComments (bool)
 # If true, clang-format will attempt to re-flow comments.
-#ReflowComments: true (from v3.9)
+ReflowComments: true
 
 # SortIncludes (bool)
 # If true, clang-format will sort #includes.
-#SortIncludes: false (from v3.9)
+SortIncludes: true
 
 # SpaceAfterCStyleCast (bool)
 # If true, a space may be inserted after C style casts.
@@ -367,8 +367,8 @@ SpaceBeforeAssignmentOperators: true
 # Possible values:
 #   SBPO_Never (in configuration: Never) Never put a space before opening parentheses.
 #   SBPO_ControlStatements (in configuration: ControlStatements) Put a space before opening parentheses only after control statement keywords (for/if/while...).
-#   SBPO_Always (in configuration: Always) Always put a space before opening parentheses, except when it’s prohibited by the syntax rules (in function-like macro definitions) or when determined by other style rules (after unary operators, opening parentheses, etc.)
-SpaceBeforeParens: Always
+#   SBPO_Always (in configuration: Always) Always put a space before opening parentheses, except when it's prohibited by the syntax rules (in function-like macro definitions) or when determined by other style rules (after unary operators, opening parentheses, etc.)
+SpaceBeforeParens: ControlStatements
 
 # SpaceInEmptyParentheses (bool)
 # If true, spaces may be inserted into ().

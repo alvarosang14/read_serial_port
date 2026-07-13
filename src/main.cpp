@@ -1,14 +1,18 @@
-#include <cstdlib>
-#include <memory>
 #include <unistd.h>
 
-#include "serial/serial.h"
-constexpr const char* const SERIAL_PORT_1 = "/dev/ttyACM0";
+#include <memory>
+#include <string>
 
-int main () {
-    std::unique_ptr<Serial> m_serial = Serial(SERIAL_PORT_1);
-    
-    while (1) {
+#include "serial_wrapper/serial_wrapper.h"
+
+constexpr const char* SERIAL_PORT_1 = "/dev/ttyACM0";
+
+int main() {
+    std::unique_ptr<SerialWrapper> m_serial = std::make_unique<SerialWrapper>(SERIAL_PORT_1, 15200);
+
+    while (true) {
         m_serial->readSerial();
     }
+
+    return EXIT_SUCCESS;
 }
