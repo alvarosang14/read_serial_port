@@ -1,22 +1,7 @@
 cmake_minimum_required(VERSION 3.22)
 
 # Setup compiler settings
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
-find_package(PkgConfig)
-pkg_check_modules(SERIAL libserial)
-
-include(FetchContent)
-FetchContent_Declare(
-    serial_cpp
-    GIT_REPOSITORY https://github.com/ami-iit/serial_cpp.git
-    GIT_TAG v1.3.4 # or use the tag or commit you prefer
-)
-
-FetchContent_MakeAvailable(serial_cpp)
-
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/ubuntu.cmake)
 
 # Define the build type
 if(NOT CMAKE_BUILD_TYPE)
@@ -29,8 +14,28 @@ set(CMAKE_PROJECT_NAME READ_SENSORS)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
 # Core project settings
+# NOTE: project() must run before FetchContent_MakeAvailable() below, since
+# serial_cpp has its own project() call — CMake uses the *first* project()
+# call to enable languages and resolve CMAKE_TOOLCHAIN_FILE, and resolving it
+# from inside a fetched subdirectory breaks relative toolchain-file paths
+# when cross-compiling (e.g. -DCMAKE_TOOLCHAIN_FILE=cmake/toolchain-mingw64.cmake).
 project(${CMAKE_PROJECT_NAME})
 message("Build type: " ${CMAKE_BUILD_TYPE})
+
+if(MINGW)
+    message(STATUS "Building with mingw-w64")
+else()
+    message(STATUS "Building with ubuntu")
+endif()
+
+include(FetchContent)
+FetchContent_Declare(
+    serial_cpp
+    GIT_REPOSITORY https://github.com/ami-iit/serial_cpp.git
+    GIT_TAG v1.3.4 # or use the tag or commit you prefer
+)
+
+FetchContent_MakeAvailable(serial_cpp)
 
 # Create an executable object type
 add_executable(${CMAKE_PROJECT_NAME})
